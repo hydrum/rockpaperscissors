@@ -1,0 +1,40 @@
+springdoc:
+    api-docs:
+        enabled: true
+    swagger-ui:
+        path: /swagger-ui.html
+        disable-swagger-default-url: true
+    show-actuator: true
+
+spring:
+    datasource:
+        url: 'jdbc:mysql://localhost:3306/rockpaperscissors'
+        username: 'root'
+        password: 'root'
+    jpa:
+        hibernate:
+            ddl-auto: validate
+        properties:
+            hibernate:
+                dialect: 'org.hibernate.dialect.MySQL8Dialect'
+                format_sql: false
+        show-sql: false
+
+management:
+    endpoints:
+        enabled-by-default: false
+        web:
+            exposure:
+                include:
+                    - health
+                    - metrics
+            base-path: /api/actuator
+    endpoint:
+        health:
+            enabled: true
+        metrics:
+            enabled: true
+    metrics:
+        enable:
+            all: false
+            game: true

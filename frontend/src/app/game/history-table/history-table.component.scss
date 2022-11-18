@@ -1,0 +1,18 @@
+table {
+    width: 100%;
+}
+
+.mat-column-outcome {
+    padding-left: .5rem;
+    width: 0;
+}
+
+.outcome-player {
+    color: var(--outcome-player);
+}
+.outcome-cpu {
+    color: var(--outcome-cpu);
+}
+.outcome-draw {
+    color: var(--outcome-draw);
+}

@@ -1,0 +1,47 @@
+version: '2.3'
+services:
+    mysql8:
+        image: mysql:8.0.31
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=RockPaperScissors
+            - MYSQL_USER=game_user
+            - MYSQL_PASSWORD=game_user
+        volumes:
+            - db-data:/var/lib/mysql
+        ports:
+            - "13306:3306"
+        healthcheck:
+            test: ["CMD", "mysql", "-h", "localhost", "-P", "3306", "-u", "root", "--password=root", "-e", "SELECT 1", "RockPaperScissors"]
+            interval: 5s
+            timeout: 10s
+            retries: 30
+
+    db-schema:
+        image: flyway/flyway:9-alpine
+        command: [ "-url=jdbc:mysql://mysql8?allowPublicKeyRetrieval=true", "-schemas=RockPaperScissors", "-user=root", "-password=root", "migrate"]
+        links:
+            - mysql8
+        depends_on:
+            mysql8:
+                condition: service_healthy
+
+    tomcat:
+        image: hydrum/tomcat-rock-paper-scissors:1.0
+        build:
+            context: "."
+            dockerfile: "./Dockerfile"
+        ports:
+            - "8080:8080"
+        environment:
+            - "SPRING_DATASOURCE_URL=jdbc:mysql://mysql8:3306/RockPaperScissors"
+            - "SPRING_DATASOURCE_USERNAME=game_user"
+            - "SPRING_DATASOURCE_PASSWORD=game_user"
+        links:
+            - mysql8
+        depends_on:
+            mysql8:
+                condition: service_healthy
+
+volumes:
+    db-data:

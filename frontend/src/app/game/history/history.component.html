@@ -1,0 +1,11 @@
+<div class="history-app">
+    <app-history-table [history]="(page | async)?.content"></app-history-table>
+
+    <mat-paginator
+        [pageSizeOptions]="pageSizeOptions"
+        [pageIndex]="(pageable | async)?.page"
+        [pageSize]="(pageable | async)?.size"
+        [length]="(page | async)?.totalElements"
+        showFirstLastButtons
+        (page)="onPageChanged($event)"></mat-paginator>
+</div>

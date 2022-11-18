@@ -1,0 +1,16 @@
+<ng-template
+    [ngIf]="!(hasPlayerNameSelected$ | async)"
+    [ngIfElse]="gameContent">
+    <app-player-name-selection></app-player-name-selection>
+</ng-template>
+
+<ng-template #gameContent>
+    <mat-card class="game-content">
+        <mat-card>
+            <app-play></app-play>
+        </mat-card>
+        <mat-card class="history-card">
+            <app-history></app-history>
+        </mat-card>
+    </mat-card>
+</ng-template>

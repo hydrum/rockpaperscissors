@@ -1,0 +1,13 @@
+:root {
+    --outcome-player: rgba(58, 245, 58);
+    --outcome-cpu: rgba(238, 22, 22);
+    --outcome-draw: rgb(252, 255, 92);;
+}
+
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

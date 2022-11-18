@@ -1,0 +1,15 @@
+:host {
+    overflow: hidden;
+}
+
+.history-app {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    app-history-table {
+        flex-grow: 1;
+        overflow: auto;
+    }
+}

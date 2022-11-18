@@ -1,0 +1,59 @@
+<div
+    class="play-container"
+    *ngIf="resultInProgress | async">
+    <mat-spinner diameter="50"></mat-spinner>
+</div>
+
+<div
+    class="play-container"
+    *ngIf="displayResult | async">
+    <div class="result-container">
+        <div
+            class="result-text"
+            [class.outcome-player]="(result | async)?.outcome == resultPlayer"
+            [class.outcome-draw]="(result | async)?.outcome == resultDraw"
+            [class.outcome-cpu]="(result | async)?.outcome == resultCpu">
+            <div class="result-name-text">{{ (result | async)?.playerName }}</div>
+            <div class="result-text">
+                <mat-icon>{{ getIcon((result | async)?.playerSelection) }}</mat-icon>
+                VS
+                <mat-icon>{{ getIcon((result | async)?.cpuSelection) }}</mat-icon>
+            </div>
+            <div class="result-name-text">CPU</div>
+        </div>
+        <div class="play-again">
+            <button
+                (click)="onPlayAgain()"
+                mat-raised-button
+                color="basic">
+                <mat-icon>replay</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div
+    class="play-container"
+    *ngIf="displayGame | async">
+    <div>Choose your option</div>
+    <div class="button-container">
+        <button
+            (click)="onRockSelection()"
+            mat-fab
+            color="basic">
+            <mat-icon>{{ getIcon('ROCK') }}</mat-icon>
+        </button>
+        <button
+            (click)="onPaperSelection()"
+            mat-fab
+            color="basic">
+            <mat-icon>{{ getIcon('PAPER') }}</mat-icon>
+        </button>
+        <button
+            (click)="onScissorsSelection()"
+            mat-fab
+            color="basic">
+            <mat-icon>{{ getIcon('SCISSORS') }}</mat-icon>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+.game-content {
+    margin: .5rem;
+    height: calc(100% - 3rem);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .history-card {
+        flex: 1 1 0;
+
+        overflow: hidden;
+    }
+}

@@ -1,0 +1,22 @@
+<mat-card>
+    <form
+        class="name-form"
+        (ngSubmit)="setPlayername()"
+        [formGroup]="form"
+        ngxsForm="Game.playerNameForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+
+            <input
+                formControlName="name"
+                type="text"
+                matInput />
+        </mat-form-field>
+        <button
+            [disabled]="canSubmit$ | async"
+            type="submit"
+            mat-raised-button>
+            PLAY
+        </button>
+    </form>
+</mat-card>
